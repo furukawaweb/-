@@ -1,5 +1,4 @@
 function buttonClick() {
-    //getValue();
     // 個数の処理
     var elements = document.getElementsByName('quantity');
     for (var a = "", i = elements.length; i--;){
@@ -9,17 +8,27 @@ function buttonClick() {
                 var wordcount = document.getElementById('count').value;
                 for(i = 0; i < wordcount; i++){
                     getValue();
+                    ptag = document.getElementById("password");
+                    brtag = '';
+                    if(ptag.textContent){
+                        brtag = '<br>';
+                    }
+                    ptag.innerHTML += brtag + password;
                 }
             }else{
                 for(i = 0; i < a; i++){
                     getValue();
+                    ptag = document.getElementById("password");
+                    brtag = '';
+                    if(ptag.textContent){
+                        brtag = '<br>';
+                    }
+                    ptag.innerHTML += brtag + password;
                 }
             }
             break;
         }
     }
-    // 上記条件を満たしたパスワードを生成
-    // 生成したパスワードを画面に表示
 }
 
 function getValue(){
@@ -32,11 +41,12 @@ function getValue(){
             str += checks[i].value + "";
         }
     }*/
+    password = "";
     // 文字数の処理
-    var alements = document.getElementsByName('wordCount');
-    for (var b = "", i = alements.length; i--;){
-        if(alements[i].checked){
-            var b = alements[i].value;
+    var elements = document.getElementsByName('wordCount');
+    for (var b = "", i = elements.length; i--;){
+        if(elements[i].checked){
+            var b = elements[i].value;
             if(b == 0){
                 const c = document.getElementById("mojiSu").value;
                 //パスワード作成
@@ -52,19 +62,24 @@ function getValue(){
                 }
             }else{
                 //パスワード作成
-                for(var d = 0; d < Number(b); d++){
+                for(var d = 0; d < b; d++){
                     var checks = document.getElementsByName("moji");
                     var str = '';
                     for(i = 0; i < 4; i++){
                         if(checks[i].checked === true){
                             str += checks[i].value + "";
-                            
                         }
-                        password += str.charAt(Math.floor(Math.random() * str.length));
                     }
+                    password += str.charAt(Math.floor(Math.random() * str.length));
                 }   
             }
-            document.getElementById("password").innerHTML = password;
+            //document.getElementById("password").innerHTML = password;
+            /*ptag = document.getElementById("password");
+            brtag = '';
+            if(ptag.textContent){
+                brtag = '<br>';
+            }
+            ptag.innerHTML += brtag + password;*/
             break;
         }
     }
